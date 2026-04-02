@@ -46,7 +46,7 @@ jobs:
       - name: Detect changes
         id: filter
         if: steps.force.outputs.run_all != 'true'
-        uses: dorny/paths-filter@v3.0.2
+        uses: dorny/paths-filter@v4.0.1
         with:
           base: ${{ steps.range.outputs.base }}
           ref: ${{ steps.range.outputs.ref }}
@@ -63,7 +63,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v5.0.0
         with:
           version: 10
       - name: Use Node.js 24
@@ -74,7 +74,7 @@ jobs:
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
         id: cache-frontend-deps
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5.0.4
         with:
           path: |
             ~/.pnpm-store
@@ -91,7 +91,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v5.0.0
         with:
           version: 10
       - name: Use Node.js 24
@@ -101,7 +101,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5.0.4
         with:
           path: |
             ~/.pnpm-store
@@ -126,7 +126,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v5.0.0
         with:
           version: 10
       - name: Use Node.js 24
@@ -136,7 +136,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5.0.4
         with:
           path: |
             ~/.pnpm-store
@@ -148,13 +148,13 @@ jobs:
         run: cd src-ui && pnpm run test --max-workers=2 --shard=${{ matrix.shard-index }}/${{ matrix.shard-count }}
       - name: Upload test results to Codecov
         if: always()
-        uses: codecov/codecov-action@v5.5.2
+        uses: codecov/codecov-action@v6.0.0
         with:
           flags: frontend-node-${{ matrix.node-version }}
           directory: src-ui/
           report_type: test_results
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5.5.2
+        uses: codecov/codecov-action@v6.0.0
         with:
           flags: frontend-node-${{ matrix.node-version }}
           directory: src-ui/coverage/
@@ -177,7 +177,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v5.0.0
         with:
           version: 10
       - name: Use Node.js 24
@@ -187,7 +187,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5.0.4
         with:
           path: |
             ~/.pnpm-store
@@ -210,7 +210,7 @@ jobs:
         with:
           fetch-depth: 2
       - name: Install pnpm
-        uses: pnpm/action-setup@v4.2.0
+        uses: pnpm/action-setup@v5.0.0
         with:
           version: 10
       - name: Use Node.js 24
@@ -220,7 +220,7 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: 'src-ui/pnpm-lock.yaml'
       - name: Cache frontend dependencies
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5.0.4
         with:
           path: |
             ~/.pnpm-store
